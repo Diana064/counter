@@ -1,4 +1,4 @@
-import ColorPicker from './colorPicker/ColorPicker.style';
+import ColorPicker from './colorPicker/ColorPicker.jsx';
 
 // import Counter from './counter/Counter';
 // import DropDown from './dropDown/DropDown';
