@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ColorBlock, ColorWrapper } from './ColorPicker.styled';
+
 import './ColorPicker.css';
 class ColorPicker extends Component {
   state = {
