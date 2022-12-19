@@ -3,7 +3,7 @@
 // import DropDown from './dropDown/DropDown';
 
 import { Component } from 'react';
-import ToDoList from './toDoList/ToDoLIst';
+// import ToDoList from './toDoList/ToDoLIst';
 import initialTodos from '../todos.json';
 import Form from './form/Form';
 
@@ -39,12 +39,12 @@ class App extends Component {
   //   this.setState({ surname: event.currentTarget.value });
   // };
   render() {
-    const { todos } = this.state;
-    const totalTodo = todos.length;
-    const completedTodos = todos.reduce(
-      (acc, todo) => (todo.completed ? acc + 1 : acc),
-      0
-    );
+    // const { todos } = this.state;
+    // const totalTodo = todos.length;
+    // const completedTodos = todos.reduce(
+    //   (acc, todo) => (todo.completed ? acc + 1 : acc),
+    //   0
+    // );
     return (
       // <div>
       //   <div>
