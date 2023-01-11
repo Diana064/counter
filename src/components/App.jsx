@@ -6,9 +6,10 @@ import shortid from 'shortid';
 import { Component } from 'react';
 import ToDoList from './toDoList/ToDoLIst';
 import initialTodos from '../todos.json';
-// import Form from './form/Form';
+import Form from './form/Form';
 import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
 import Filter from './filter/Filter.jsx';
+import Modal from './modal/Modal';
 
 // const colorPickerOptions = [
 //   { label: 'red', color: '#F44336' },
@@ -21,10 +22,16 @@ import Filter from './filter/Filter.jsx';
 
 class App extends Component {
   state = {
-    todos: initialTodos,
+    todos: [],
     filter: '',
     // name: '',
     // surname: '',
+    showModal: false,
+  };
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
   };
   addToDo = text => {
     console.log(text);
@@ -89,8 +96,23 @@ class App extends Component {
   //   console.log(event.currentTarget.value);
   //   this.setState({ surname: event.currentTarget.value });
   // };
+  componentDidMount() {
+    const todos = localStorage.getItem('todos');
+    const parseTodos = JSON.parse(todos);
+    if (parseTodos) {
+      this.setState({ todos: parseTodos });
+    } else {
+      this.setState({ todos: initialTodos });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
   render() {
-    const { filter } = this.state;
+    console.log('App render');
+    const { filter, showModal } = this.state;
     const {
       deleteTodos,
       toggleCompleted,
@@ -104,6 +126,25 @@ class App extends Component {
     const visibleTodos = getVisibleTodos();
 
     return (
+      <div>
+        <button type="button" onClick={this.toggleModal}>
+          Open Modal
+        </button>
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <h1>This is content of Modal Window</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+              distinctio architecto sunt ullam quo suscipit consequatur, neque
+              deleniti cupiditate voluptas eveniet inventore magnam iure
+              ducimus! Nostrum officiis incidunt nesciunt natus?
+            </p>
+            <button type="button" onClick={this.toggleModal}>
+              Close
+            </button>
+          </Modal>
+        )}
+      </div>
       // <div>
       //   <div>
       //     <p>Загальна к-ть todo: {totalTodo}</p>
@@ -121,19 +162,22 @@ class App extends Component {
       //     value={this.state.inputValue}
       //     onChange={this.handleInputChange}
       //   />
-      <div>
-        <p>Загальна к-ть todo: {totalTodo}</p>
-        <p>Виконані todo: {completedTodos}</p>
-        <ToDoEditor onSubmit={addToDo} />
-        <Filter value={filter} onChange={changeFilter} />
-        {/* <Form onSubmit={this.formSubmitHandler} />
-        <ColorPicker options={colorPickerOptions} /> */}
-        <ToDoList
-          todos={visibleTodos}
-          onDeleteTodo={deleteTodos}
-          onToggleCompleted={toggleCompleted}
-        />
-      </div>
+
+      // // todos
+      // <div>
+      //<p>Загальна к-ть todo: {totalTodo}</p>
+      //   <p>Виконані todo: {completedTodos}</p>
+      //   <ToDoEditor onSubmit={addToDo} />
+      //   <Filter value={filter} onChange={changeFilter} />
+      //   {/* <Form onSubmit={this.formSubmitHandler} />
+      // //   <ColorPicker options={colorPickerOptions} /> */}
+      //   <ToDoList
+      //     todos={visibleTodos}
+      //     onDeleteTodo={deleteTodos}
+      //     onToggleCompleted={toggleCompleted}
+      // />
+      // </div>
+      // //end todos
     );
   }
 }
