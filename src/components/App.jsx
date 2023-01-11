@@ -4,11 +4,11 @@ import shortid from 'shortid';
 // import DropDown from './dropDown/DropDown';
 
 import { Component } from 'react';
-import ToDoList from './toDoList/ToDoLIst';
+// import ToDoList from './toDoList/ToDoLIst';
 import initialTodos from '../todos.json';
-import Form from './form/Form';
-import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
-import Filter from './filter/Filter.jsx';
+// import Form from './form/Form';
+// import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
+// import Filter from './filter/Filter.jsx';
 import Modal from './modal/Modal';
 
 // const colorPickerOptions = [
