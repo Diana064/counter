@@ -112,18 +112,18 @@ class App extends Component {
   }
   render() {
     console.log('App render');
-    const { filter, showModal } = this.state;
-    const {
-      deleteTodos,
-      toggleCompleted,
-      addToDo,
-      changeFilter,
-      getVisibleTodos,
-    } = this;
-    const totalTodo = this.state.todos.length;
-    const completedTodos = this.getComplitedTodo();
+    const { showModal } = this.state;
+    // const {
+    //   // deleteTodos,
+    //   // toggleCompleted,
+    //   // addToDo,
+    //   // changeFilter,
+    //   // getVisibleTodos,
+    // } = this;
+    // const totalTodo = this.state.todos.length;
+    // const completedTodos = this.getComplitedTodo();
 
-    const visibleTodos = getVisibleTodos();
+    // const visibleTodos = getVisibleTodos();
 
     return (
       <div>
