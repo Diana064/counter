@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import ToDo from 'components/todo/ToDo';
 const ToDoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
   <ul className="TodoList">
     {todos.map(({ id, text, completed }) => (
@@ -8,20 +9,12 @@ const ToDoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
           'TodoList__item--completed': completed,
         })}
       >
-        <input
-          type="checkbox"
-          className="TodoList__checkbox"
-          checked={completed}
-          onChange={() => onToggleCompleted(id)}
+        <ToDo
+          text={text}
+          completed={completed}
+          onDeleteTodo={() => onDeleteTodo(id)}
+          onToggleCompleted={() => onToggleCompleted(id)}
         />
-        <p className="TodoList__text">{text}</p>
-        <button
-          type="button"
-          className="TodoList__btn"
-          onClick={() => onDeleteTodo(id)}
-        >
-          Удалить
-        </button>
       </li>
     ))}
   </ul>

@@ -13,6 +13,8 @@ import Modal from './modal/Modal.jsx';
 import Tabs from './tabs/Tabs';
 import tabs from '../tabs.json';
 import initialTodos from '../todos.json';
+import IconButton from './iconButton/IconButton';
+import { ReactComponent as AddIcon } from '../icons/add.svg';
 // const colorPickerOptions = [
 //   { label: 'red', color: '#F44336' },
 //   { label: 'green', color: '#4CAF50' },
@@ -45,6 +47,7 @@ class App extends Component {
     this.setState(prevState => ({
       todos: [todo, ...prevState.todos],
     }));
+    // this.toggleModal();
   };
   deleteTodos = todoId => {
     this.setState(prevState => ({
@@ -108,8 +111,13 @@ class App extends Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.todos !== prevState.todos) {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    const nextTodos = this.state.todos;
+    const prevTodos = prevState.todos;
+    if (nextTodos !== prevTodos) {
+      localStorage.setItem('todos', JSON.stringify(nextTodos));
+    }
+    if (nextTodos.length > prevTodos.length && prevTodos.length !== 0) {
+      this.toggleModal();
     }
   }
   render() {
@@ -129,27 +137,19 @@ class App extends Component {
 
     return (
       <div>
-        <button type="button" onClick={this.toggleModal}>
-          Open Modal
-        </button>
-        <Tabs items={tabs} />
+        <IconButton onClick={this.toggleModal} aria-label="Add todo">
+          <AddIcon width="40px" height="40px" fill="white" />
+        </IconButton>
+        {/* <button type="button">Open Modal</button> */}
+        {/* <Tabs items={tabs} /> */}
         {showModal && (
           <Modal onClose={this.toggleModal}>
-            <h1>This is content of Modal Window</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              distinctio architecto sunt ullam quo suscipit consequatur, neque
-              deleniti cupiditate voluptas eveniet inventore magnam iure
-              ducimus! Nostrum officiis incidunt nesciunt natus?
-            </p>
-            <button type="button" onClick={this.toggleModal}>
-              Close
-            </button>
+            <ToDoEditor onSubmit={addToDo} />
           </Modal>
         )}
         <p>Загальна к-ть todo: {totalTodo}</p>
         <p>Виконані todo: {completedTodos}</p>
-        <ToDoEditor onSubmit={addToDo} />
+
         <Filter value={filter} onChange={changeFilter} />
 
         <ToDoList
