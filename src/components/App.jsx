@@ -3,6 +3,8 @@
 // import DropDown from './dropDown/DropDown';
 // import Clock from './clock/Clock';
 // import Form from './form/Form';
+// import Tabs from './tabs/Tabs';
+// import tabs from '../tabs.json';
 
 import { Component } from 'react';
 import shortid from 'shortid';
@@ -10,8 +12,7 @@ import ToDoList from './toDoList/ToDoLIst';
 import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
 import Filter from './filter/Filter.jsx';
 import Modal from './modal/Modal.jsx';
-import Tabs from './tabs/Tabs';
-import tabs from '../tabs.json';
+
 import initialTodos from '../todos.json';
 import IconButton from './iconButton/IconButton';
 import { ReactComponent as AddIcon } from '../icons/add.svg';
