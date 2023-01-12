@@ -1,16 +1,18 @@
 // import ColorPicker from './colorPicker/ColorPicker.jsx';
-import shortid from 'shortid';
 // import Counter from './counter/Counter';
 // import DropDown from './dropDown/DropDown';
+// import Clock from './clock/Clock';
+// import Form from './form/Form';
 
 import { Component } from 'react';
-// import ToDoList from './toDoList/ToDoLIst';
+import shortid from 'shortid';
+import ToDoList from './toDoList/ToDoLIst';
+import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
+import Filter from './filter/Filter.jsx';
+import Modal from './modal/Modal.jsx';
+import Tabs from './tabs/Tabs';
+import tabs from '../tabs.json';
 import initialTodos from '../todos.json';
-// import Form from './form/Form';
-// import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
-// import Filter from './filter/Filter.jsx';
-import Modal from './modal/Modal';
-
 // const colorPickerOptions = [
 //   { label: 'red', color: '#F44336' },
 //   { label: 'green', color: '#4CAF50' },
@@ -112,24 +114,25 @@ class App extends Component {
   }
   render() {
     console.log('App render');
-    const { showModal } = this.state;
-    // const {
-    //   // deleteTodos,
-    //   // toggleCompleted,
-    //   // addToDo,
-    //   // changeFilter,
-    //   // getVisibleTodos,
-    // } = this;
-    // const totalTodo = this.state.todos.length;
-    // const completedTodos = this.getComplitedTodo();
+    const { filter, showModal } = this.state;
+    const {
+      deleteTodos,
+      toggleCompleted,
+      addToDo,
+      changeFilter,
+      getVisibleTodos,
+    } = this;
+    const totalTodo = this.state.todos.length;
+    const completedTodos = this.getComplitedTodo();
 
-    // const visibleTodos = getVisibleTodos();
+    const visibleTodos = getVisibleTodos();
 
     return (
       <div>
         <button type="button" onClick={this.toggleModal}>
           Open Modal
         </button>
+        <Tabs items={tabs} />
         {showModal && (
           <Modal onClose={this.toggleModal}>
             <h1>This is content of Modal Window</h1>
@@ -144,40 +147,27 @@ class App extends Component {
             </button>
           </Modal>
         )}
+        <p>Загальна к-ть todo: {totalTodo}</p>
+        <p>Виконані todo: {completedTodos}</p>
+        <ToDoEditor onSubmit={addToDo} />
+        <Filter value={filter} onChange={changeFilter} />
+
+        <ToDoList
+          todos={visibleTodos}
+          onDeleteTodo={deleteTodos}
+          onToggleCompleted={toggleCompleted}
+        />
+        {/* <Clock /> */}
+        {/* <Form onSubmit={this.formSubmitHandler} />
+        <ColorPicker options={colorPickerOptions} /> */}
+        {/* <Counter />
+        <DropDown /> */}
+        {/* <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+        /> */}
       </div>
-      // <div>
-      //   <div>
-      //     <p>Загальна к-ть todo: {totalTodo}</p>
-
-      //     <p>Виконані todo: {completedTodos}</p>
-      //   </div>
-
-      //   {/* <Counter />
-      // <DropDown />
-
-      // </div>
-      // <div>
-      //   <input
-      //     type="text"
-      //     value={this.state.inputValue}
-      //     onChange={this.handleInputChange}
-      //   />
-
-      // // todos
-      // <div>
-      //<p>Загальна к-ть todo: {totalTodo}</p>
-      //   <p>Виконані todo: {completedTodos}</p>
-      //   <ToDoEditor onSubmit={addToDo} />
-      //   <Filter value={filter} onChange={changeFilter} />
-      //   {/* <Form onSubmit={this.formSubmitHandler} />
-      // //   <ColorPicker options={colorPickerOptions} /> */}
-      //   <ToDoList
-      //     todos={visibleTodos}
-      //     onDeleteTodo={deleteTodos}
-      //     onToggleCompleted={toggleCompleted}
-      // />
-      // </div>
-      // //end todos
     );
   }
 }
