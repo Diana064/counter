@@ -1,7 +1,7 @@
 // import ColorPicker from './colorPicker/ColorPicker.jsx';
 import Counter from './counter/Counter';
 // import DropDown from './dropDown/DropDown';
-import Clock from './clock/Clock';
+// import Clock from './clock/Clock';
 // import Form from './form/Form';
 // import Tabs from './tabs/Tabs';
 // import tabs from '../tabs.json';
