@@ -1,21 +1,21 @@
 // import ColorPicker from './colorPicker/ColorPicker.jsx';
-// import Counter from './counter/Counter';
+import Counter from './counter/Counter';
 // import DropDown from './dropDown/DropDown';
-// import Clock from './clock/Clock';
+import Clock from './clock/Clock';
 // import Form from './form/Form';
 // import Tabs from './tabs/Tabs';
 // import tabs from '../tabs.json';
 
 import { Component } from 'react';
 import shortid from 'shortid';
-import ToDoList from './toDoList/ToDoLIst';
-import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
-import Filter from './filter/Filter.jsx';
-import Modal from './modal/Modal.jsx';
+// import ToDoList from './toDoList/ToDoLIst';
+// import ToDoEditor from './toDoEditor/ToDoEditor.jsx';
+// import Filter from './filter/Filter.jsx';
+// import Modal from './modal/Modal.jsx';
 
 import initialTodos from '../todos.json';
-import IconButton from './iconButton/IconButton';
-import { ReactComponent as AddIcon } from '../icons/add.svg';
+// import IconButton from './iconButton/IconButton';
+// import { ReactComponent as AddIcon } from '../icons/add.svg';
 // const colorPickerOptions = [
 //   { label: 'red', color: '#F44336' },
 //   { label: 'green', color: '#4CAF50' },
@@ -122,47 +122,47 @@ class App extends Component {
     }
   }
   render() {
-    console.log('App render');
-    const { filter, showModal } = this.state;
-    const {
-      deleteTodos,
-      toggleCompleted,
-      addToDo,
-      changeFilter,
-      getVisibleTodos,
-    } = this;
-    const totalTodo = this.state.todos.length;
-    const completedTodos = this.getComplitedTodo();
+    // console.log('App render');
+    // const { filter, showModal } = this.state;
+    // const {
+    //   deleteTodos,
+    //   toggleCompleted,
+    //   addToDo,
+    //   changeFilter,
+    //   getVisibleTodos,
+    // } = this;
+    // const totalTodo = this.state.todos.length;
+    // const completedTodos = this.getComplitedTodo();
 
-    const visibleTodos = getVisibleTodos();
+    // const visibleTodos = getVisibleTodos();
 
     return (
       <div>
-        <IconButton onClick={this.toggleModal} aria-label="Add todo">
+        {/* <IconButton onClick={this.toggleModal} aria-label="Add todo">
           <AddIcon width="40px" height="40px" fill="white" />
-        </IconButton>
+        </IconButton> */}
         {/* <button type="button">Open Modal</button> */}
         {/* <Tabs items={tabs} /> */}
-        {showModal && (
+        {/* {showModal && (
           <Modal onClose={this.toggleModal}>
             <ToDoEditor onSubmit={addToDo} />
           </Modal>
-        )}
-        <p>Загальна к-ть todo: {totalTodo}</p>
-        <p>Виконані todo: {completedTodos}</p>
+        )} */}
+        {/* <p>Загальна к-ть todo: {totalTodo}</p>
+        <p>Виконані todo: {completedTodos}</p> */}
 
-        <Filter value={filter} onChange={changeFilter} />
-
+        {/* <Filter value={filter} onChange={changeFilter} /> */}
+        {/* 
         <ToDoList
           todos={visibleTodos}
           onDeleteTodo={deleteTodos}
           onToggleCompleted={toggleCompleted}
-        />
+        /> */}
         {/* <Clock /> */}
-        {/* <Form onSubmit={this.formSubmitHandler} />
-        <ColorPicker options={colorPickerOptions} /> */}
-        {/* <Counter />
-        <DropDown /> */}
+        {/* <Form onSubmit={this.formSubmitHandler} /> */}
+        {/* <ColorPicker options={colorPickerOptions} /> */}
+        <Counter />
+        {/* <DropDown /> */}
         {/* <input
           type="text"
           value={this.state.inputValue}
